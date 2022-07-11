@@ -1,11 +1,20 @@
+import * as Yup from "yup"
 import { useFormik } from "formik"
 import Grid from "@mui/material/Grid"
-import TextField from "@mui/material/TextField"
 
 import ToppingsPicker from "./ToppingsPicker"
 import CheeseSelect from "./CheeseSelect"
 import CrustSelect from "./CrustSelect"
+import DiameterInput from "./DiameterInput"
 import { calculatePieCost } from "../../lib/pizzaCalculator"
+
+const pizzaSchema = Yup.object().shape({
+  crust: Yup.number().required(),
+  cheese: Yup.number().required(),
+  diameter: Yup.number().required(),
+  toppings: Yup.array().of(Yup.string()),
+})
+
 
 const PizzaCalculator = props => {
   const formik = useFormik({
@@ -15,20 +24,13 @@ const PizzaCalculator = props => {
       diameter: 12,
       toppings: [],
     },
+    validationSchema: pizzaSchema,
   })
 
   return (
     <Grid container spacing={2}>
       <Grid item xs={4}>
-        <TextField
-          fullWidth
-          id="diameter"
-          name="diameter"
-          variant="standard"
-          label="Size (in inches)"
-          value={formik.values.diameter}
-          onChange={formik.handleChange}
-        />
+        <DiameterInput formik={formik} />
         <div>{calculatePieCost(formik.values)}</div>
       </Grid>
       <Grid item xs={8}/>
