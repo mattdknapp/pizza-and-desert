@@ -2,12 +2,13 @@ import * as Yup from "yup"
 import { useFormik } from "formik"
 import Grid from "@mui/material/Grid"
 
-import Total from "../shared/Total"
 import CrustSelect from "./CrustSelect"
 import CheeseSelect from "./CheeseSelect"
 import DiameterInput from "./DiameterInput"
 import QuantityInput from "./QuantityInput"
 import ToppingsPicker from "./ToppingsPicker"
+import TotalAndSubmit from "../shared/TotalAndSubmit"
+import { createParams } from "../../lib/createParams"
 import { getPizzaFromParams } from "../../lib/paramsParser"
 import { calculatePieCost } from "../../lib/pizzaCalculator"
 
@@ -19,11 +20,11 @@ const pizzaSchema = Yup.object().shape({
   toppings: Yup.array().of(Yup.string()),
 })
 
-
 const PizzaCalculator = () => {
   const formik = useFormik({
     initialValues: getPizzaFromParams(),
     validationSchema: pizzaSchema,
+    onSubmit: createParams("Pizza"),
   })
 
   return (
@@ -43,10 +44,12 @@ const PizzaCalculator = () => {
       <Grid item xs={12}>
         <ToppingsPicker formik={formik} />
       </Grid>
-      <Grid item xs={4}>
-        <Total value={calculatePieCost(formik.values)} />
+      <Grid item xs={12}>
+          <TotalAndSubmit
+            value={calculatePieCost(formik.values)}
+            onSubmit={formik.submitForm}
+          />
       </Grid>
-      <Grid item xs={8} />
     </Grid>
   )
 }

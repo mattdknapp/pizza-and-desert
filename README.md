@@ -43,3 +43,7 @@ much.
 ## Public Access
 This project is hosted in s3 and can be accessed
 [here](http://simple-apps.s3-website-us-east-1.amazonaws.com/).
+
+## Creating A Shareable URL
+At any point a user can click the `SHARE` button in the form to generate a URL
+that can be used to load the form at the current state by anyone with the URL.

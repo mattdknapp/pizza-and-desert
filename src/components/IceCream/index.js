@@ -2,10 +2,11 @@ import * as Yup from "yup"
 import { useFormik } from "formik"
 import Grid from "@mui/material/Grid"
 
-import Total from "../shared/Total"
 import MilkInput from "./MilkInput"
 import VolumeInput from "./VolumeInput"
 import FlavorSelect from "./FlavorSelect"
+import TotalAndSubmit from "../shared/TotalAndSubmit"
+import { createParams } from "../../lib/createParams"
 import { getIceCreamFromParams } from "../../lib/paramsParser"
 import { calculateIceCreamCost } from "../../lib/iceCreamCalculator"
 
@@ -19,6 +20,7 @@ const IceCream = () => {
   const formik = useFormik({
     initialValues: getIceCreamFromParams(),
     validationSchema: iceCreamSchema,
+    onSubmit: createParams("Ice Cream"),
   })
 
   return (
@@ -32,10 +34,12 @@ const IceCream = () => {
       <Grid item xs={4}>
         <FlavorSelect formik={formik} />
       </Grid>
-      <Grid item xs={4}>
-        <Total value={calculateIceCreamCost(formik.values)} />
+      <Grid item xs={12}>
+          <TotalAndSubmit
+            onSubmit={formik.submitForm}
+            value={calculateIceCreamCost(formik.values)}
+          />
       </Grid>
-      <Grid item xs={8} />
     </Grid>
   )
 }

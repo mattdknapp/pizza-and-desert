@@ -56,4 +56,28 @@ describe("IceCreamCalculator", () => {
 
     checkCost(10, 2.12, flavorValue)
   })
+
+  it("updates the query params when submitted", async () => {
+    render(<IceCreamCalculator />)
+
+    await act(async () => {
+      const flavorSelector = screen.getByTestId("flavor")
+      fireEvent.mouseDown(getByRole(flavorSelector, "button"))
+    })
+
+    await act(async () => {
+      const chosenFlavor = await screen.findByText(flavorName)
+      chosenFlavor.click()
+    })
+
+    await act(async () => {
+      const shareButton = await screen.findByText("Share")
+      shareButton.click()
+    })
+
+    const params = new URLSearchParams(window.location.search)
+    expect(params.get("sku")).toBe("Ice Cream")
+    expect(params.get("flavor")).toBe(flavorName)
+    expect(params.get("milk")).toBe("2.12")
+  })
 })
