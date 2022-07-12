@@ -20,3 +20,13 @@ export const getPizzaFromParams = () => {
     diameter: params.get("diameter") || 12,
   }
 }
+
+export const getIceCreamFromParams = () => {
+  const params = getParams()
+
+  return {
+    milk: params.get("milk") || 2.12,
+    volume: params.get("volume") || 1,
+    flavor: params.get("flavor") || "",
+  }
+}

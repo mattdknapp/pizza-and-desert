@@ -6,6 +6,7 @@ import Total from "../shared/Total"
 import MilkInput from "./MilkInput"
 import VolumeInput from "./VolumeInput"
 import FlavorSelect from "./FlavorSelect"
+import { getIceCreamFromParams } from "../../lib/paramsParser"
 import { calculateIceCreamCost } from "../../lib/iceCreamCalculator"
 
 const iceCreamSchema = Yup.object().shape({
@@ -16,11 +17,7 @@ const iceCreamSchema = Yup.object().shape({
 
 const IceCream = () => {
   const formik = useFormik({
-    initialValues: {
-      volume: 1,
-      flavor: "",
-      milk: 2.12,
-    },
+    initialValues: getIceCreamFromParams(),
     validationSchema: iceCreamSchema,
   })
 
