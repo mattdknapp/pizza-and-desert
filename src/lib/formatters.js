@@ -7,6 +7,6 @@ export const numericFormatter = str => {
 }
 
 export const formatDollarAmount = numb => {
-  const rounded = numb.toFixed(2)
-  return `$${rounded.toLocaleString()}`
+  const rounded = Number(numb.toFixed(2))
+  return `$${rounded.toLocaleString(undefined, { minimumFractionDigits: 2 })}`
 }

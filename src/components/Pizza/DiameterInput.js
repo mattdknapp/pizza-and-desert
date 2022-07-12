@@ -4,7 +4,7 @@ import TextField from "@mui/material/TextField"
 import { strToNumber } from "../../lib/filters"
 import { numericFormatter } from "../../lib/formatters"
 
-const isNumeric = new RegExp(/^[\d|\.|,]*$/)
+const isNumeric = new RegExp(/^[\d|,]*$/)
 
 const DiameterInput = ({ formik }) => {
   const { setFieldValue } = formik
@@ -22,8 +22,8 @@ const DiameterInput = ({ formik }) => {
       id="diameter"
       name="diameter"
       variant="standard"
-      label="Size (in inches)"
       onChange={handleChange}
+      label="Size (in inches)"
       value={numericFormatter(formik.values.diameter)}
     />
   )

@@ -24,7 +24,7 @@ const Calculator = ({ sku }) => {
   }
 }
 
-function App() {
+const App = () => {
   const formik = useFormik({
     initialValues: {
       sku: 12,
