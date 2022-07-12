@@ -1,8 +1,14 @@
 import NumericInput from "../shared/NumericInput"
+import { longDollarAmount } from "../../lib/formatters"
 
 const MilkInput = ({ formik }) => {
   return (
-    <NumericInput label="Wholesale Milk Price" name="milk" formik={formik} />
+    <NumericInput
+      name="milk"
+      formik={formik}
+      label="Wholesale Milk Price"
+      formatter={longDollarAmount}
+    />
   )
 }
 

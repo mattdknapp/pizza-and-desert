@@ -11,6 +11,10 @@ export const numericFormatter = str => {
   return toTwoDecimals(strToNumber(str))
 }
 
+export const longDollarAmount = numb => {
+  return `$${numb.toLocaleString()}`
+}
+
 export const formatDollarAmount = numb => {
   return `$${toTwoDecimals(numb)}`
 }

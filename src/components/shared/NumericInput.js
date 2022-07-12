@@ -6,7 +6,12 @@ import { numericFormatter } from "../../lib/formatters"
 
 const isNumeric = new RegExp(/^[\d.,]*$/)
 
-const NumericInput = ({ name, label, formik }) => {
+const NumericInput = ({
+  name,
+  label,
+  formik,
+  formatter = numericFormatter,
+}) => {
   const {
     errors,
     values,
@@ -16,8 +21,9 @@ const NumericInput = ({ name, label, formik }) => {
   } = formik
 
   const handleChange = useCallback(e => {
-    if (isNumeric.test(e.target.value)) {
-      const numberVal = strToNumber(e.target.value)
+    const nonDollarVal = e.target.value.replace("$", "")
+    if (isNumeric.test(nonDollarVal)) {
+      const numberVal = strToNumber(nonDollarVal)
       setFieldTouched(name, true)
       setFieldValue(name, numberVal)
     }
@@ -32,7 +38,7 @@ const NumericInput = ({ name, label, formik }) => {
       variant="standard"
       onChange={handleChange}
       helperText={errors[name]}
-      value={numericFormatter(values[name])}
+      value={formatter(values[name])}
       error={touched[name] && Boolean(errors[name])}
     />
   )
