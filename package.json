@@ -24,7 +24,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "test:coverage": "react-scripts test --coverage --watchAll",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "release": "yarn build && aws s3 sync build s3://simple-apps"
   },
   "eslintConfig": {
     "extends": [
