@@ -41,6 +41,7 @@ const Select = ({
       <MUISelect
         id={name}
         name={name}
+        data-testid={name}
         onBlur={handleBlur}
         value={values[name]}
         onChange={handleChange}

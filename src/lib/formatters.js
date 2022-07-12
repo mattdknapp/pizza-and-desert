@@ -18,3 +18,7 @@ export const longDollarAmount = numb => {
 export const formatDollarAmount = numb => {
   return `$${toTwoDecimals(numb)}`
 }
+
+export const wholeNumberAmount = numb => {
+  return Math.round(numb).toLocaleString()
+}

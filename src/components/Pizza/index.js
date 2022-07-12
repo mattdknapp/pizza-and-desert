@@ -6,6 +6,7 @@ import Total from "../shared/Total"
 import CrustSelect from "./CrustSelect"
 import CheeseSelect from "./CheeseSelect"
 import DiameterInput from "./DiameterInput"
+import QuantityInput from "./QuantityInput"
 import ToppingsPicker from "./ToppingsPicker"
 import { getPizzaFromParams } from "../../lib/paramsParser"
 import { calculatePieCost } from "../../lib/pizzaCalculator"
@@ -27,13 +28,16 @@ const PizzaCalculator = () => {
 
   return (
     <Grid container spacing={2}>
-      <Grid item xs={4}>
+      <Grid item xs={6}>
         <DiameterInput formik={formik} />
       </Grid>
-      <Grid item xs={4}>
+      <Grid item xs={6}>
+        <QuantityInput formik={formik} />
+      </Grid>
+      <Grid item xs={6}>
         <CheeseSelect formik={formik} />
       </Grid>
-      <Grid item xs={4}>
+      <Grid item xs={6}>
         <CrustSelect formik={formik} />
       </Grid>
       <Grid item xs={12}>

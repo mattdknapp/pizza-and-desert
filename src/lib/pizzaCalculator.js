@@ -8,15 +8,12 @@ const createCalculator = area => ingredient => {
 
 const calculate = calculator => (total, ingredient) => {
   if (!ingredient) return 0
-  if (Array.isArray(ingredient)) {
-    return ingredient.reduce(calculate(calculator), total)
-  }
   return total + calculator(ingredient)
 }
 
 const calculateToppings = (calculator, toppings) => {
-  const values = toppings.map(topping => pizzaIngredients[topping])
-  return values.reduce(calculate(calculator), 0)
+  const total = toppings.reduce(calculate(calculator), 0)
+  return total
 }
 
 export const calculatePieCost = opts => {
