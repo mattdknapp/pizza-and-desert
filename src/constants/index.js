@@ -14,7 +14,7 @@ export const crustOptions = [
 ]
 
 export const toppings = {
-  Pepperoni: 0.012,
+  "Pepperoni": 0.012,
   "Extra Cheese": 0.009,
   "Sausage & Peppers": 0.015,
   "Spinage Alfredo": 0.0115,

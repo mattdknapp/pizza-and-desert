@@ -2,10 +2,11 @@ import * as Yup from "yup"
 import { useFormik } from "formik"
 import Grid from "@mui/material/Grid"
 
-import ToppingsPicker from "./ToppingsPicker"
-import CheeseSelect from "./CheeseSelect"
 import CrustSelect from "./CrustSelect"
+import CheeseSelect from "./CheeseSelect"
 import DiameterInput from "./DiameterInput"
+import ToppingsPicker from "./ToppingsPicker"
+import { formatDollarAmount } from "../../lib/formatters"
 import { calculatePieCost } from "../../lib/pizzaCalculator"
 
 const pizzaSchema = Yup.object().shape({
@@ -31,23 +32,19 @@ const PizzaCalculator = props => {
     <Grid container spacing={2}>
       <Grid item xs={4}>
         <DiameterInput formik={formik} />
-        <div>{calculatePieCost(formik.values)}</div>
       </Grid>
-      <Grid item xs={8}/>
-      <Grid item xs={1}/>
       <Grid item xs={4}>
         <CheeseSelect formik={formik} />
       </Grid>
-      <Grid item xs={2}/>
       <Grid item xs={4}>
         <CrustSelect formik={formik} />
       </Grid>
-      <Grid item xs={1}/>
-      <Grid item xs={1}/>
-      <Grid item xs={6}>
+      <Grid item xs={12}>
         <ToppingsPicker formik={formik} />
       </Grid>
-      <Grid item xs={1}/>
+      <Grid item xs={12}>
+        <div>{formatDollarAmount(calculatePieCost(formik.values))}</div>
+      </Grid>
     </Grid>
   )
 }

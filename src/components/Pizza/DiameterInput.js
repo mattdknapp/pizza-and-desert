@@ -1,17 +1,22 @@
 import { useCallback } from "react"
 import TextField from "@mui/material/TextField"
 
-const isNumeric = new RegExp(/^[\d|\.]*$/)
+import { strToNumber } from "../../lib/filters"
+import { numericFormatter } from "../../lib/formatters"
+
+const isNumeric = new RegExp(/^[\d|\.|,]*$/)
 
 const DiameterInput = ({ formik }) => {
   const { setFieldValue } = formik
 
   const handleChange = useCallback(e => {
     if (isNumeric.test(e.target.value)) {
-      setFieldValue("diameter", e.target.value)
+      const numberVal = strToNumber(e.target.value)
+      setFieldValue("diameter", numberVal)
     }
   }, [setFieldValue])
 
+  console.log(formik.values.diameter)
   return (
     <TextField
       fullWidth
@@ -20,7 +25,7 @@ const DiameterInput = ({ formik }) => {
       variant="standard"
       label="Size (in inches)"
       onChange={handleChange}
-      value={formik.values.diameter}
+      value={numericFormatter(formik.values.diameter)}
     />
   )
 }
