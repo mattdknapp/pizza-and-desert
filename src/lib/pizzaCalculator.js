@@ -1,8 +1,9 @@
-import { toppings as toppingsOptions, pi } from "../constants"
+import { pizzaIngredients, pi } from "../constants"
 
 const createCalculator = area => ingredient => {
-  if (!ingredient || isNaN(Number(ingredient))) return 0
-  return area * ingredient
+  const ingredientCost = pizzaIngredients[ingredient]
+  if (!ingredientCost || isNaN(Number(ingredientCost))) return 0
+  return area * ingredientCost
 }
 
 const calculate = calculator => (total, ingredient) => {
@@ -14,7 +15,7 @@ const calculate = calculator => (total, ingredient) => {
 }
 
 const calculateToppings = (calculator, toppings) => {
-  const values = toppings.map(topping => toppingsOptions[topping])
+  const values = toppings.map(topping => pizzaIngredients[topping])
   return values.reduce(calculate(calculator), 0)
 }
 
@@ -22,6 +23,7 @@ export const calculatePieCost = opts => {
   const {
     diameter,
     toppings,
+    quantity,
     ...ingredients
   } = opts
   const radius = diameter / 2
@@ -29,5 +31,7 @@ export const calculatePieCost = opts => {
   const calculator = createCalculator(area)
   const toppingCost = calculateToppings(calculator, toppings)
   const ingredientsCost = Object.values(ingredients).reduce(calculate(calculator), 0)
-  return toppingCost + ingredientsCost
+  const costPerPie = toppingCost + ingredientsCost
+
+  return quantity * costPerPie
 }

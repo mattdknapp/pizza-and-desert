@@ -6,6 +6,7 @@ import Container from "@mui/material/Container"
 
 import PizzaCalculator from "./Pizza"
 import SKUSelector from "./SKUSelector"
+import { getSKUFromParams } from "../lib/paramsParser"
 
 const StyledContainer = styled(Container)`
   margin-top: 10%;
@@ -17,7 +18,7 @@ const StyledPaper = styled(Paper)`
 
 const Calculator = ({ sku }) => {
   switch(sku) {
-    case "pizza":
+    case "Pizza":
       return <PizzaCalculator />
     default:
       return null
@@ -26,9 +27,7 @@ const Calculator = ({ sku }) => {
 
 const App = () => {
   const formik = useFormik({
-    initialValues: {
-      sku: 12,
-    },
+    initialValues: getSKUFromParams(),
   })
 
   return (

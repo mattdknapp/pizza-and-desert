@@ -1,4 +1,5 @@
 import { capitalize } from "lodash"
+import { useCallback } from "react"
 import MUISelect from "@mui/material/Select"
 import MenuItem from "@mui/material/MenuItem"
 import InputLabel from "@mui/material/InputLabel"
@@ -18,22 +19,37 @@ const Select = ({
   variant = "standard",
 }) => {
   const safeLabel = getLabel(name, label)
-  const { values, handleChange } = formik
+  const {
+    errors,
+    values,
+    touched,
+    handleChange,
+    setFieldTouched,
+  } = formik
+
+  const handleBlur = useCallback(() => {
+    setFieldTouched(name, true)
+  }, [name, setFieldTouched])
 
   return (
-    <FormControl fullWidth={fullWidth} variant={variant}>
+    <FormControl
+      variant={variant}
+      fullWidth={fullWidth}
+      error={touched[name] && Boolean(errors[name])}
+    >
       <InputLabel>{safeLabel}</InputLabel>
-        <MUISelect
-          id={name}
-          name={name}
-          value={values[name]}
-          onChange={handleChange}
-        >
-          {options.map(option => (
-            <MenuItem key={option.value} value={option.value}>
-              {getLabel(option.value, option.label)}
-            </MenuItem>
-          ))}
+      <MUISelect
+        id={name}
+        name={name}
+        onBlur={handleBlur}
+        value={values[name]}
+        onChange={handleChange}
+      >
+        {options.map(option => (
+          <MenuItem key={option.value} value={option.value}>
+            {getLabel(option.value, option.label)}
+          </MenuItem>
+        ))}
       </MUISelect>
     </FormControl>
   )

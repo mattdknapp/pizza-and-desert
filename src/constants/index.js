@@ -2,7 +2,12 @@ export const pi = 3.14159
 
 const createSelectOptions = items => Object
   .entries(items)
-  .map(([label, value]) => ({ label, value }))
+  .map(([label, value]) => ({ label, value: label }))
+
+export const skus = [
+  "Pizza",
+  "Ice Cream",
+]
 
 export const cheese = {
   "Vegan": 0.017,
@@ -22,8 +27,14 @@ export const toppings = {
   "Extra Cheese": 0.009,
   "Sausage & Peppers": 0.015,
   "Spinage Alfredo": 0.0115,
+  "Buffalo Chicken": 0.017,
 }
 
 export const toppingsOptions = createSelectOptions(toppings)
 export const cheeseOptions = createSelectOptions(cheese)
 export const crustOptions = createSelectOptions(crust)
+export const pizzaIngredients = {
+  ...cheese,
+  ...crust,
+  ...toppings,
+}

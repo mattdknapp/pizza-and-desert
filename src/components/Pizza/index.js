@@ -7,24 +7,21 @@ import CrustSelect from "./CrustSelect"
 import CheeseSelect from "./CheeseSelect"
 import DiameterInput from "./DiameterInput"
 import ToppingsPicker from "./ToppingsPicker"
+import { getPizzaFromParams } from "../../lib/paramsParser"
 import { calculatePieCost } from "../../lib/pizzaCalculator"
 
 const pizzaSchema = Yup.object().shape({
   crust: Yup.number().required(),
   cheese: Yup.number().required(),
   diameter: Yup.number().required(),
+  quantity: Yup.number().required(),
   toppings: Yup.array().of(Yup.string()),
 })
 
 
 const PizzaCalculator = props => {
   const formik = useFormik({
-    initialValues: {
-      crust: 0,
-      cheese: 0,
-      diameter: 12,
-      toppings: [],
-    },
+    initialValues: getPizzaFromParams(),
     validationSchema: pizzaSchema,
   })
 
@@ -42,7 +39,9 @@ const PizzaCalculator = props => {
       <Grid item xs={12}>
         <ToppingsPicker formik={formik} />
       </Grid>
-      <Grid item xs={12}>
+      <Grid item xs={8}>
+      </Grid>
+      <Grid item xs={4}>
         <Total value={calculatePieCost(formik.values)} />
       </Grid>
     </Grid>

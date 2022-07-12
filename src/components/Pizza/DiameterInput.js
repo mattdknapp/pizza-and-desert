@@ -7,14 +7,21 @@ import { numericFormatter } from "../../lib/formatters"
 const isNumeric = new RegExp(/^[\d|,]*$/)
 
 const DiameterInput = ({ formik }) => {
-  const { setFieldValue } = formik
+  const {
+    errors,
+    values,
+    touched,
+    setFieldValue,
+    setFieldTouched,
+  } = formik
 
   const handleChange = useCallback(e => {
     if (isNumeric.test(e.target.value)) {
       const numberVal = strToNumber(e.target.value)
+      setFieldTouched("diameter", true)
       setFieldValue("diameter", numberVal)
     }
-  }, [setFieldValue])
+  }, [setFieldTouched, setFieldValue])
 
   return (
     <TextField
@@ -24,7 +31,9 @@ const DiameterInput = ({ formik }) => {
       variant="standard"
       onChange={handleChange}
       label="Size (in inches)"
-      value={numericFormatter(formik.values.diameter)}
+      helperText={errors.diameter}
+      value={numericFormatter(values.diameter)}
+      error={touched.diameter && Boolean(errors.diameter)}
     />
   )
 }

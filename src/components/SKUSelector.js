@@ -1,12 +1,9 @@
 import Select from "./shared/Select"
+import { skus } from "../constants"
 
-const skus = [
-  { label: "Ice Cream", value: "iceCream" },
-  { label: "Pizza", value: "pizza"},
-]
-
+const skuOptions = skus.map(sku => ({ value: sku }))
 const SKUSelector = ({ formik }) => {
-  return <Select options={skus} formik={formik} name="sku" label="SKU" />
+  return <Select options={skuOptions} formik={formik} name="sku" label="SKU" />
 }
 
 export default SKUSelector
