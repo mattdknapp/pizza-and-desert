@@ -1,3 +1,5 @@
+import { add } from "lodash"
+
 export const pi = 3.14159
 
 const createSelectOptions = items => Object
@@ -45,8 +47,10 @@ const baseFlavors = {
   "Strawberry": 0.63,
 }
 
-const calculateNeapolitan = (acc, next) => {
-  return acc + next
+const calculateNeapolitan = () => {
+  const flavorPrices = Object.values(baseFlavors)
+  const sum = flavorPrices.reduce(add)
+  return sum/flavorPrices.length
 }
 
 export const flavors = {

@@ -11,10 +11,10 @@ import { getPizzaFromParams } from "../../lib/paramsParser"
 import { calculatePieCost } from "../../lib/pizzaCalculator"
 
 const pizzaSchema = Yup.object().shape({
-  crust: Yup.number().required(),
-  cheese: Yup.number().required(),
-  diameter: Yup.number().required(),
-  quantity: Yup.number().required(),
+  crust: Yup.string().required(),
+  cheese: Yup.string().required(),
+  diameter: Yup.number().required().positive(),
+  quantity: Yup.number().required().positive(),
   toppings: Yup.array().of(Yup.string()),
 })
 
@@ -39,11 +39,10 @@ const PizzaCalculator = () => {
       <Grid item xs={12}>
         <ToppingsPicker formik={formik} />
       </Grid>
-      <Grid item xs={8}>
-      </Grid>
       <Grid item xs={4}>
         <Total value={calculatePieCost(formik.values)} />
       </Grid>
+      <Grid item xs={8} />
     </Grid>
   )
 }
