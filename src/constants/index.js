@@ -38,3 +38,20 @@ export const pizzaIngredients = {
   ...crust,
   ...toppings,
 }
+
+const baseFlavors = {
+  "Chocolate": 0.97,
+  "Vanilla": 0.45,
+  "Strawberry": 0.63,
+}
+
+const calculateNeapolitan = (acc, next) => {
+  return acc + next
+}
+
+export const flavors = {
+  ...baseFlavors,
+  "Neapolitan": Object.values(baseFlavors).reduce(calculateNeapolitan, 0),
+}
+
+export const flavorOptions = createSelectOptions(flavors)

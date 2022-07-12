@@ -19,7 +19,7 @@ const pizzaSchema = Yup.object().shape({
 })
 
 
-const PizzaCalculator = props => {
+const PizzaCalculator = () => {
   const formik = useFormik({
     initialValues: getPizzaFromParams(),
     validationSchema: pizzaSchema,

@@ -6,6 +6,7 @@ import Container from "@mui/material/Container"
 
 import PizzaCalculator from "./Pizza"
 import SKUSelector from "./SKUSelector"
+import IceCreamCalculator from "./IceCream"
 import { getSKUFromParams } from "../lib/paramsParser"
 
 const StyledContainer = styled(Container)`
@@ -20,6 +21,8 @@ const Calculator = ({ sku }) => {
   switch(sku) {
     case "Pizza":
       return <PizzaCalculator />
+    case "Ice Cream":
+      return <IceCreamCalculator />
     default:
       return null
   }
