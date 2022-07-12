@@ -1,6 +1,10 @@
 import { strToNumber } from "./filters"
 
-const toTwoDecimals = numb => numb.toLocaleString(undefined, { minimumFractionDigits: 2 })
+const localeStringOptions = {
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2,
+}
+const toTwoDecimals = numb => numb.toLocaleString(undefined, localeStringOptions)
 
 export const numericFormatter = str => {
   if (!str) return ""
