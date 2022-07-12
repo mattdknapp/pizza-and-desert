@@ -7,7 +7,7 @@ import { numericFormatter } from "../../lib/formatters"
 const isNumeric = new RegExp(/^[\d.,]*$/)
 
 const removeSpuriousPeriods = strValue => {
-  return strValue.replaceAll(/(?<=\.\d*)\./g, "")
+  return strValue.replace(/(?<=\.\d*)\./g, "")
 }
 
 const NumericInput = ({
