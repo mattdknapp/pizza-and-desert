@@ -6,6 +6,10 @@ import { numericFormatter } from "../../lib/formatters"
 
 const isNumeric = new RegExp(/^[\d.,]*$/)
 
+const removeSpuriousPeriods = strValue => {
+  return strValue.replaceAll(/(?<=\.\d*)\./g, "")
+}
+
 const NumericInput = ({
   name,
   label,
@@ -21,7 +25,7 @@ const NumericInput = ({
   } = formik
 
   const handleChange = useCallback(e => {
-    const nonDollarVal = e.target.value.replace("$", "")
+    const nonDollarVal = removeSpuriousPeriods(e.target.value.replace("$", ""))
     if (isNumeric.test(nonDollarVal)) {
       const numberVal = strToNumber(nonDollarVal)
       setFieldTouched(name, true)

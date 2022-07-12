@@ -22,7 +22,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --coverage --watchAll",
+    "test": "react-scripts test",
+    "test:coverage": "react-scripts test --coverage --watchAll",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -34,6 +35,7 @@
   "jest": {
     "collectCoverageFrom": [
       "src/**/*.js",
+      "!src/index.js",
       "!src/**/*.test.js"
     ],
     "coverageThreshold": {

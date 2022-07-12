@@ -4,7 +4,7 @@ import PizzaCalculator from "."
 import { toppings, pizzaIngredients } from "../../constants"
 
 describe("PizzaCalculator", () => {
-  it.only("renders the pizza form", () => {
+  it("renders the pizza form", () => {
     render(<PizzaCalculator />)
     const checkForTextPresence = txt => {
       expect(screen.getByText(txt)).toBeInTheDocument()
