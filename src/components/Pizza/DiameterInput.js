@@ -16,7 +16,6 @@ const DiameterInput = ({ formik }) => {
     }
   }, [setFieldValue])
 
-  console.log(formik.values.diameter)
   return (
     <TextField
       fullWidth

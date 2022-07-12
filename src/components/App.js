@@ -4,8 +4,8 @@ import styled from "styled-components"
 import Paper from "@mui/material/Paper"
 import Container from "@mui/material/Container"
 
-import SKUSelector from "./SKUSelector"
 import PizzaCalculator from "./Pizza"
+import SKUSelector from "./SKUSelector"
 
 const StyledContainer = styled(Container)`
   margin-top: 10%;
@@ -27,7 +27,7 @@ const Calculator = ({ sku }) => {
 function App() {
   const formik = useFormik({
     initialValues: {
-      sku: "",
+      sku: 12,
     },
   })
 
