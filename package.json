@@ -22,7 +22,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --coverage --watchAll",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -30,6 +30,20 @@
       "react-app",
       "react-app/jest"
     ]
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "!src/**/*.test.js"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "statements": 80,
+        "branch": 80,
+        "funcs": 80,
+        "lines": 80
+      }
+    }
   },
   "browserslist": {
     "production": [
