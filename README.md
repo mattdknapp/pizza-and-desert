@@ -47,3 +47,35 @@ This project is hosted in s3 and can be accessed
 ## Creating A Shareable URL
 At any point a user can click the `SHARE` button in the form to generate a URL
 that can be used to load the form at the current state by anyone with the URL.
+
+## Given More Time
+### The Backend
+If I had more time to work on this project I would probably implement a simple
+back end utilizing Apollo (possibly the serverless variant). Apollo provides a
+simple way of creating a GQL API and the tooling for GQL is an exceptional
+boost to developer productivity.
+
+If I were to host this using serverless I would probaby utilize AWS Lambda as
+my familiarity is greatest with it currently, though I do remember Firebase
+functions being very simple to use.
+
+### Persistance
+For such a simple use case any JSON store should be sufficient and I would
+consider using something such as DynamoDB for this. However after introducing
+user management I would probably start out with PostgreSQL as it's JSONB
+functionality provides a great amount of utility and it's still a relational
+DB which is helpful for, well, modeling relationships.
+
+### TypeScript
+I didn't use TypeScript for this project mostly because I'm a little rusty at
+the time and I'm dealing with time constraints. While I respect TypeScript as
+a technology choice it seemed to me that utilizing this time as a refresher
+course on TypeScript would probably not serve the purpose of the project very
+well, and it _is_ marked as optional ;)
+
+### Formik
+I found Formik to be a better utility than I expected it to be. Last time I
+looked at it as a solution I was not impressed by the amount of boilerplate
+code that was required for some basic use cases, but the flexibility that it
+provides while still reduce a large amount of boilerplate has turned out to be
+better than I expected.
